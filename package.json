@@ -1,0 +1,15 @@
+{
+  "name": "batmovie",
+  "version": "1.0.0",
+  "description": "Best Advice for TV and Movie Options with Versatile Interesting Entertainment, is a movie and tv show recommendation system, developed by Varun Kaushal.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git remote add origin https://github.com/kaushalvarun/Batmovie.git"
+  },
+  "author": "Varun Kaushal",
+  "license": "ISC"
+}
