@@ -1,0 +1,17 @@
+.header {
+    text-align: left;
+    padding: 1em;
+}
+
+h1,
+h2 {
+    margin: 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}

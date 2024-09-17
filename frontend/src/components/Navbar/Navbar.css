@@ -1,0 +1,152 @@
+/* Utility belt styles */
+.utility-belt {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #a28524; /* Belt color */
+    padding: 1rem;
+    width: 10vw; /* Width of the navbar */
+    height: 100vh; /* Full height of the viewport */
+    align-items: center;
+    justify-content: flex-start; /* Align items at the start */
+}
+
+/* Belt compartment styling */
+.belt-compartment {
+    position: relative;
+    background-color: #a28524; /* Belt color */
+    color: #f1f1f1; /* Light text */
+    padding: 0; /* No padding to allow for precise positioning */
+    margin: 1rem 0;
+    width: 100px; /* Square width */
+    height: 100px; /* Square height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align items at the top */
+    border: 2px solid #000; /* Black border for the square */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Slight shadow for depth */
+    z-index: 1; /* Ensure the belt compartment is below the links */
+}
+
+/* Rectangles inside the belt compartment */
+.belt-compartment .rectangle {
+    position: absolute;
+    background-color: #a28524; /* Same color as belt compartment */
+    border: 2px solid #000; /* Black border for the rectangles */
+    z-index: 1; /* Ensure rectangles are below the links */
+}
+
+/* First rectangle */
+.belt-compartment .first-rectangle {
+    width: 20%; /* Width of the first rectangle */
+    height: 100%; /* Height equal to the square */
+    top: 0;
+    left: 0;
+}
+
+/* Second rectangle */
+.belt-compartment .second-rectangle {
+    width: 15%; /* Width of the second rectangle */
+    height: 25%; /* Height of the second rectangle */
+    top: 50%; /* Vertically center the rectangle */
+    left: 20%; /* Start immediately after the first rectangle */
+    transform: translateY(-50%); /* Center vertically */
+}
+
+/* Links container styling */
+.belt-links {
+    z-index: 2; /* Ensure links are above the rectangles */
+    text-align: center; /* Center text alignment */
+}
+
+/* Links styling inside the links container */
+.belt-link {
+    text-align: center;
+    text-decoration: none;
+    color: #f1f1f1; /* Light text color for contrast */
+    background-color: #a28524; /* Same color as belt compartment */
+    font-weight: bold;
+    display: block; /* Make links block elements for wrapping */
+    padding: 0.2rem 0; /* Reduced padding */
+    margin: 0; /* Remove margin */
+    z-index: 3; /* Ensure links are on top of everything */
+    top: 5%;
+    left: 11%;
+    position: relative; /* Ensure z-index applies correctly */
+}
+
+/* Hover effect: highlight the belt links in yellow */
+.belt-link:hover {
+    background-color: #ffcc00; /* Yellow on hover */
+    color: #000; /* Black text */
+}
+
+/* Active link style */
+.belt-link.active {
+    background-color: #ffcc00; /* Same yellow as hover */
+    color: #000; /* Black text */
+}
+
+/* Hover effect: highlight the compartment in yellow */
+.belt-compartment:hover {
+    background-color: #ffcc00; /* Yellow on hover */
+    color: #000; /* Black text */
+    transform: translateY(-5px); /* Lift effect */
+}
+
+/* Active page compartment */
+.belt-compartment.active {
+    background-color: #ffcc00; /* Same yellow as hover */
+    color: #000; /* Black text */
+}
+
+/* Adding shadow for the compartments to make them stand out */
+.belt-compartment {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Slight shadow for depth */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .utility-belt {
+        width: 80px;
+    }
+
+    .belt-compartment {
+        width: 80px;
+        height: 80px;
+    }
+
+    .belt-compartment .rectangle {
+        border-width: 1px;
+    }
+
+    .belt-links {
+        margin-top: 48px; /* Adjusted gap on smaller screens */
+    }
+
+    .belt-link {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .utility-belt {
+        width: 70px;
+    }
+
+    .belt-compartment {
+        width: 70px;
+        height: 70px;
+    }
+
+    .belt-compartment .rectangle {
+        border-width: 1px;
+    }
+
+    .belt-link {
+        font-size: 0.7rem;
+    }
+}
