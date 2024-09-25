@@ -3,20 +3,20 @@ import "./Body.css";
 
 function Body() {
     // State to store movie titles from the backend
-    const [movies, setMovies] = useState([]); 
+    const [movies, setMovies] = useState([]);
     // State for the selected movie
-    const [selectedMovie, setSelectedMovie] = useState(""); 
+    const [selectedMovie, setSelectedMovie] = useState("");
     // State to store recommendations
-    const [recommendations, setRecommendations] = useState([]); 
+    const [recommendations, setRecommendations] = useState([]);
     // Error message if no movie found
-    const [errorMessage, setErrorMessage] = useState(""); 
+    const [errorMessage, setErrorMessage] = useState("");
     // State to manage loading state
-    const [loading, setLoading] = useState(false); 
+    const [loading, setLoading] = useState(false);
 
     // Fetch the list of movies from the backend
     useEffect(() => {
         // Loading set to true when fetching movies
-        setLoading(true); 
+        setLoading(true);
 
         // Fetch movies from server
         fetch("http://localhost:5001/movies")
@@ -25,19 +25,19 @@ function Body() {
                 setMovies(data.movies);
             })
             .catch((error) => {
-                console.error("Error fetching movies:", error); 
-            }).finally(()=> setLoading(false));
-            // Loading set to false
+                console.error("Error fetching movies:", error);
+            }).finally(() => setLoading(false));
+        // Loading set to false
     }, []);
 
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Reset error message before fetching
-        setErrorMessage(""); 
+        setErrorMessage("");
 
         // Set loading to true when fetching recommendations
-        setLoading(true); 
+        setLoading(true);
 
         try {
             // Request for recommended movies with input selected movie
@@ -62,7 +62,7 @@ function Body() {
             console.error("Error fetching recommendations:", error);
             setErrorMessage("An error occurred. Please try again.");
         } finally {
-            setLoading(false); 
+            setLoading(false);
         }
     };
 
@@ -84,7 +84,7 @@ function Body() {
                         </option>
                     ))}
                 </select>
-                <br/>
+                <br />
                 <button type="submit">Recommend</button>
             </form>
 
@@ -95,11 +95,13 @@ function Body() {
             {recommendations.length > 0 && (
                 <div>
                     <h2>Recommended Movies:</h2>
+                    <br/>
                     <div className="movie-cards">
-                        {recommendations.map(([imageLink, movieTitle], index) => (
-                            <div className="card" key={index}>
-                                <img src={imageLink} alt={movieTitle} style={{ width: "100px", height: "auto" }} />
-                                {movieTitle}
+                        {recommendations.map(([imageLink, movieTitle]) => (
+                            <div className="card-box">
+                                <div className="card" style={{ backgroundImage: `url(${imageLink})`}}>
+                                </div>
+                                <b style={{textAlign:"center"}}>{movieTitle}</b>
                             </div>
                         ))}
                     </div>
