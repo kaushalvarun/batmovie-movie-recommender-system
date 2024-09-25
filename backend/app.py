@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 import pickle
 import pandas as pd
-import requests
 import os
 from dotenv import load_dotenv
 
@@ -23,9 +22,9 @@ with open('similarity_matrix.pkl', 'rb') as file:
 
 movies = pd.DataFrame(movies_dict)
 
-@app.route('/')
-def home():
-    return render_template('index.html', movies=movies['title'].tolist())
+# @app.route('/')
+# def home():
+#     return render_template('index.html', movies=movies['title'].tolist())
 
 @app.route('/movies', methods=['GET'])
 def get_movies():
@@ -41,7 +40,7 @@ def recommend():
     try:
         recommended_movies, recommended_movie_posters = get_recommend_movies(selected_movie)
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"Error": str(e)}), 500
 
     recommendations = list(zip(recommended_movie_posters, recommended_movies))
     
@@ -75,36 +74,30 @@ def get_recommend_movies(movie):
 import requests
 
 def fetch_movie_poster(movie_id, timeout=3):
-    # print(movie_id)
-    # try:
-    #     response = requests.get(f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}", timeout=timeout)
+    try:
+        response = requests.get(f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}", timeout=timeout)
         
-    #     # Check if the request was successful
-    #     response.raise_for_status()  # Raises an HTTPError for bad responses (4xx or 5xx)
+        # Check if the request was successful
+        response.raise_for_status()  # Raises an HTTPError for bad responses (4xx or 5xx)
 
-    #     # Attempt to retrieve the poster path
-    #     data = response.json()
-    #     movie_poster_path = data.get('poster_path')
+        # Attempt to retrieve the poster path
+        data = response.json()
+        movie_poster_path = data.get('poster_path')
 
-    #     # Check if poster_path is available
-    #     if movie_poster_path:
-    #         movie_poster_url = "https://image.tmdb.org/t/p/original/" + movie_poster_path
-    #         print(movie_poster_url)
-    #         return movie_poster_url
-    #     else:
-    #         # If there's no poster_path, return a safe image URL
-    #         print("Poster path not found. Returning safe image URL.")
-    #         return "https://i.ibb.co/sCpkHWh/default-movie.png"  
+        # Check if poster_path is available
+        if movie_poster_path:
+            movie_poster_url = "https://image.tmdb.org/t/p/original/" + movie_poster_path
+            print(movie_poster_url)
+            return movie_poster_url
+        else:
+            # If there's no poster_path, return a default image URL
+            print("Poster path not found")
+            return "https://i.ibb.co/sCpkHWh/default-movie.png"  
 
-    # except requests.exceptions.RequestException as e:
-    #     # Handle any request exceptions (network issues, timeout, etc.)
-    #     print(f"Error fetching movie poster: {e}")
+    except requests.exceptions.RequestException as e:
+        # Handling request exceptions (network issues, timeout, etc.)
+        print(f"Error fetching movie poster: {e}")
         return "https://i.ibb.co/sCpkHWh/default-movie.png" 
-
-# for testing
-@app.route("/message")
-def test():
-    return {"message":"Flask API endpoint"}
 
 if __name__ == '__main__':
     app.run(port = 5001, debug=True)
