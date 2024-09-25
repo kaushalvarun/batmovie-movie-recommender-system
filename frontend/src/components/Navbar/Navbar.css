@@ -1,117 +1,103 @@
 /* Utility belt styles */
 .utility-belt {
+    background-color: #a28524; 
     position: fixed;
     top: 0;
     right: 0;
+
     display: flex;
     flex-direction: column;
-    background-color: #a28524; /* Belt color */
     padding: 1rem;
-    width: 10vw; /* Width of the navbar */
-    height: 100vh; /* Full height of the viewport */
+    width: 10vw; 
+    height: 100vh; 
     align-items: center;
-    justify-content: flex-start; /* Align items at the start */
+    justify-content: flex-start;
 }
 
-/* Belt compartment styling */
+/* Belt compartment styles */
 .belt-compartment {
+    background-color: #a28524; 
+    color: #f1f1f1; 
     position: relative;
-    background-color: #a28524; /* Belt color */
-    color: #f1f1f1; /* Light text */
-    padding: 0; /* No padding to allow for precise positioning */
+    padding: 0;
     margin: 1rem 0;
-    width: 100px; /* Square width */
-    height: 100px; /* Square height */
+    width: 100px; 
+    height: 100px; 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Align items at the top */
-    border: 2px solid #000; /* Black border for the square */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Slight shadow for depth */
-    z-index: 1; /* Ensure the belt compartment is below the links */
+    justify-content: flex-start; 
+    border: 2px solid #000; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); 
+    z-index: 1; 
 }
 
 /* Rectangles inside the belt compartment */
 .belt-compartment .rectangle {
+    background-color: inherit; 
     position: absolute;
-    background-color: #a28524; /* Same color as belt compartment */
-    border: 2px solid #000; /* Black border for the rectangles */
-    z-index: 1; /* Ensure rectangles are below the links */
+    border: 2px solid black; 
+    z-index: 1; 
 }
 
 /* First rectangle */
 .belt-compartment .first-rectangle {
-    width: 20%; /* Width of the first rectangle */
-    height: 100%; /* Height equal to the square */
+    width: 20%; 
+    height: 100%; 
     top: 0;
     left: 0;
 }
 
 /* Second rectangle */
 .belt-compartment .second-rectangle {
-    width: 15%; /* Width of the second rectangle */
-    height: 25%; /* Height of the second rectangle */
-    top: 50%; /* Vertically center the rectangle */
-    left: 20%; /* Start immediately after the first rectangle */
-    transform: translateY(-50%); /* Center vertically */
+    width: 12.5%;
+    height: 25%; 
+    left: 20%; 
+
+    /* Center vertically */
+    top: 50%; 
+    transform: translateY(-50%); 
 }
 
-/* Links container styling */
+/* Hyperlink container styles */
 .belt-links {
-    z-index: 2; /* Ensure links are above the rectangles */
-    text-align: center; /* Center text alignment */
+    text-align: center; 
+    z-index: 2; 
 }
 
-/* Links styling inside the links container */
+/* Links inside container styles */
 .belt-link {
-    text-align: center;
     text-decoration: none;
-    color: #f1f1f1; /* Light text color for contrast */
-    background-color: #a28524; /* Same color as belt compartment */
+    text-align: center;
+    color: inherit; 
+    background-color: inherit; 
     font-weight: bold;
-    display: block; /* Make links block elements for wrapping */
-    padding: 0.2rem 0; /* Reduced padding */
-    margin: 0; /* Remove margin */
-    z-index: 3; /* Ensure links are on top of everything */
+    display: block; 
+    padding: 0.1rem 0; 
+    margin: 0; 
     top: 5%;
-    left: 11%;
-    position: relative; /* Ensure z-index applies correctly */
+    left: 12%;
+    position: relative; 
+    z-index: 3; 
 }
 
-/* Hover effect: highlight the belt links in yellow */
-.belt-link:hover {
-    background-color: #ffcc00; /* Yellow on hover */
-    color: #000; /* Black text */
+/* Belt compartment hover & active effects */
+.belt-compartment:hover, .belt-compartment.active {
+    background-color: #ffcc00; 
+    color: black; 
+    transform: translateY(-5px);
 }
 
-/* Active link style */
-.belt-link.active {
-    background-color: #ffcc00; /* Same yellow as hover */
-    color: #000; /* Black text */
-}
-
-/* Hover effect: highlight the compartment in yellow */
-.belt-compartment:hover {
-    background-color: #ffcc00; /* Yellow on hover */
-    color: #000; /* Black text */
-    transform: translateY(-5px); /* Lift effect */
-}
-
-/* Active page compartment */
-.belt-compartment.active {
-    background-color: #ffcc00; /* Same yellow as hover */
-    color: #000; /* Black text */
-}
-
-/* Adding shadow for the compartments to make them stand out */
 .belt-compartment {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Slight shadow for depth */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); 
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     .utility-belt {
         width: 80px;
+        /* For scrolling */
+        overflow-y: auto;
     }
 
     .belt-compartment {
@@ -124,7 +110,7 @@
     }
 
     .belt-links {
-        margin-top: 48px; /* Adjusted gap on smaller screens */
+        margin-top: 48px; 
     }
 
     .belt-link {
@@ -135,6 +121,7 @@
 @media (max-width: 480px) {
     .utility-belt {
         width: 70px;
+        overflow-y: auto;
     }
 
     .belt-compartment {

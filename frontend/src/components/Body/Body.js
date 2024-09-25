@@ -17,16 +17,16 @@ function Body() {
     useEffect(() => {
         // Loading set to true when fetching movies
         setLoading(true); 
+
+        // Fetch movies from server
         fetch("http://localhost:5001/movies")
             .then((response) => response.json())
             .then((data) => {
                 setMovies(data.movies);
-                setLoading(false); 
             })
             .catch((error) => {
-                console.error("Error fetching movies:", error);
-                setLoading(false); 
-            });
+                console.error("Error fetching movies:", error); 
+            }).finally(()=> setLoading(false));
             // Loading set to false
     }, []);
 
@@ -35,10 +35,12 @@ function Body() {
         e.preventDefault();
         // Reset error message before fetching
         setErrorMessage(""); 
+
         // Set loading to true when fetching recommendations
         setLoading(true); 
 
         try {
+            // Request for recommended movies with input selected movie
             const response = await fetch("http://localhost:5001/recommend", {
                 method: "POST",
                 headers: {
@@ -61,7 +63,6 @@ function Body() {
             setErrorMessage("An error occurred. Please try again.");
         } finally {
             setLoading(false); 
-            // Set loading to false after fetching recommendations
         }
     };
 
@@ -76,22 +77,23 @@ function Body() {
                     value={selectedMovie}
                     onChange={(e) => setSelectedMovie(e.target.value)}
                 >
-                    <option value="">Search for a movie...</option>
+                    <option value="">Select a movie...</option>
                     {movies.map((title, index) => (
                         <option key={index} value={title}>
                             {title}
                         </option>
                     ))}
                 </select>
+                <br/>
                 <button type="submit">Recommend</button>
             </form>
 
             {/* Loading sign */}
-            {loading && <p>Loading...</p>}
+            {loading && <h3>Loading...</h3>}
 
             {/* Recommended movies */}
             {recommendations.length > 0 && (
-                <>
+                <div>
                     <h2>Recommended Movies:</h2>
                     <div className="movie-cards">
                         {recommendations.map(([imageLink, movieTitle], index) => (
@@ -101,7 +103,7 @@ function Body() {
                             </div>
                         ))}
                     </div>
-                </>
+                </div>
             )}
 
             {/* Display error message if no recommendations */}

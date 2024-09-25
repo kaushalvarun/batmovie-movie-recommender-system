@@ -1,13 +1,17 @@
 .body {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     padding: 1rem;
+    width: 100%;
 }
+
 .search-bar {
-    width: 80%;
+    background-color: #fefefe;
+    width: 90%; 
     padding: 1rem;
     font-size: 1.2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
 }
 
 .movie-cards {
@@ -20,11 +24,56 @@
 .card {
     background-color: white;
     color: black;
-    width: 12em;
+    width: 12em; 
     height: 20rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-color:black;
+    border-color: black;
     border-radius: 1rem;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #fefefe;
+    margin: 0;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+    .search-bar {
+        width: 75%; 
+        font-size: 1.1rem; 
+    }
+
+    .card {
+        width: 10em;
+        height: 18rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-bar {
+        width: 75%; 
+        font-size: 1rem; 
+    }
+
+    .card {
+        width: 100%; 
+        height: auto;
+    }
+
+    button {
+        font-size: 0.85rem; 
+        padding: 0.3rem;
+    }
 }

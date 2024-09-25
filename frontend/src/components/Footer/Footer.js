@@ -4,9 +4,9 @@ function Footer() {
     const currYear = new Date().getFullYear();
     console.log(currYear);
     return (
-        <header className='footer'>
-            <p>Copyright @{currYear}</p>
-        </header>
+        <footer className='footer'>
+            <p>Created by Varun Kaushal,  &copy; {currYear}</p>
+        </footer>
     );
 }
 export default Footer;
