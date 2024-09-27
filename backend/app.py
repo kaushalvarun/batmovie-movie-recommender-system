@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, send_from_directory, request, jsonify
 from flask_cors import CORS
 import pickle
 import pandas as pd
@@ -8,10 +8,11 @@ from dotenv import load_dotenv
 # Access TMDB api key
 load_dotenv()
 api_key = os.getenv('API_KEY')
-app = Flask(__name__)
 
-# Allow frontend to access flask server
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+app = Flask(__name__, static_folder='../frontend/build', template_folder='../frontend/build')
+
+# Allow all domains to access flask server (enablin frontend to access flask server)
+CORS(app)
 
 # Load movie dictionary, similarity matrix
 with open('english_movies_dict.pkl', 'rb') as file:
@@ -22,19 +23,26 @@ with open('similarity_matrix.pkl', 'rb') as file:
 
 movies = pd.DataFrame(movies_dict)
 
-# @app.route('/')
-# def home():
-#     return render_template('index.html', movies=movies['title'].tolist())
-
+# Serve React app's frontend files
+@app.route('/', defaults={'path':''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return render_template('index.html')
+    
+# API endpoint to get movie titles
 @app.route('/movies', methods=['GET'])
 def get_movies():
     return jsonify(movies = movies['title'].tolist())
 
+# API endpoint for movie recommendations
 @app.route('/recommend', methods=['POST'])
 def recommend():
     data = request.get_json()
     selected_movie = data.get('movie')
-    print('Recieved:' + selected_movie)
+    print(f'Recieved:{selected_movie}')
     
     # Fetch the recommended movies and movie IDs
     try:
@@ -100,4 +108,4 @@ def fetch_movie_poster(movie_id, timeout=3):
         return "https://i.ibb.co/sCpkHWh/default-movie.png" 
 
 if __name__ == '__main__':
-    app.run(port = 5001, debug=True)
+    app.run(host='0.0.0.0', port = os.getenv('PORT', 5001), debug=True)
