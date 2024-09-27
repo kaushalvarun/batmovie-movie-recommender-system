@@ -12,7 +12,7 @@ api_key = os.getenv('API_KEY')
 app = Flask(__name__, static_folder='../frontend/build', template_folder='../frontend/build')
 
 # Allow all domains to access flask server (enablin frontend to access flask server)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Load movie dictionary, similarity matrix
 with open('english_movies_dict.pkl', 'rb') as file:
