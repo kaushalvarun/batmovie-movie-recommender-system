@@ -15,14 +15,16 @@ app = Flask(__name__, static_folder='../frontend/build', template_folder='../fro
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Load movie dictionary, similarity matrix
-with open('english_movies_dict.pkl', 'rb') as file:
+path = os.path.join(os.path.dirname(__file__), 'english_movies_dict.pkl')
+with open(path, 'rb') as file:
     movies_dict = pickle.load(file)
 
 # Load similarity matrix
 def load_similarity_matrix():
     try:
         print("Attempting to load the similarity matrix...")
-        with gzip.open('similarity_matrix.pkl.gz', 'rb') as f:
+        path = os.path.join(os.path.dirname(__file__), 'similarity_matrix.pkl.gz')
+        with gzip.open(path, 'rb') as f:
             loaded_similarity_matrix = pickle.load(f)
         print("Similarity matrix loaded successfully.")
         return loaded_similarity_matrix
