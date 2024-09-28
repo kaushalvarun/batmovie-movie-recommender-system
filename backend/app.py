@@ -1,9 +1,10 @@
 from flask import Flask, render_template, send_from_directory, request, jsonify
 from flask_cors import CORS
-import pickle
+import pickle, gzip
 import pandas as pd
 import os
 from dotenv import load_dotenv
+from load_similarity import load_similarity_matrix
 
 # Access TMDB api key
 load_dotenv()
@@ -18,8 +19,8 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 with open('english_movies_dict.pkl', 'rb') as file:
     movies_dict = pickle.load(file)
 
-with open('similarity_matrix.pkl', 'rb') as file:
-    similarity = pickle.load(file)
+# Load similarity matrix
+similarity = load_similarity_matrix()
 
 movies = pd.DataFrame(movies_dict)
 
@@ -106,6 +107,5 @@ def fetch_movie_poster(movie_id, timeout=3):
         # Handling request exceptions (network issues, timeout, etc.)
         print(f"Error fetching movie poster: {e}")
         return "https://i.ibb.co/sCpkHWh/default-movie.png" 
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port = os.getenv('PORT', 5001), debug=True)
