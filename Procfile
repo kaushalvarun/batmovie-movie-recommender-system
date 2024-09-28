@@ -1,1 +1,1 @@
-web: gunicorn backend.app:app
+web: source myenv/bin/activate && gunicorn backend.app:app
