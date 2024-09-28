@@ -4,7 +4,6 @@ import pickle, gzip
 import pandas as pd
 import os
 from dotenv import load_dotenv
-from load_similarity import load_similarity_matrix
 
 # Access TMDB api key
 load_dotenv()
@@ -20,6 +19,23 @@ with open('english_movies_dict.pkl', 'rb') as file:
     movies_dict = pickle.load(file)
 
 # Load similarity matrix
+def load_similarity_matrix():
+    try:
+        print("Attempting to load the similarity matrix...")
+        with gzip.open('similarity_matrix.pkl.gz', 'rb') as f:
+            loaded_similarity_matrix = pickle.load(f)
+        print("Similarity matrix loaded successfully.")
+        return loaded_similarity_matrix
+    except FileNotFoundError:
+        print("Error: The file 'similarity_matrix.pkl.gz' was not found.")
+        return None
+    except pickle.UnpicklingError:
+        print("Error: The file could not be unpickled.")
+        return None
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        print(f"Error type: {type(e)}")
+        return None
 similarity = load_similarity_matrix()
 
 movies = pd.DataFrame(movies_dict)
