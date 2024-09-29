@@ -17,9 +17,9 @@ function Body() {
     useEffect(() => {
         // Loading set to true when fetching movies
         setLoading(true);
-
-        // Fetch movies from server
-        fetch("http://localhost:5001/movies")
+    
+        // Making API request from backend URL
+        fetch("https://batmovie-movie-recommender-system.onrender.com/movies")
             .then((response) => response.json())
             .then((data) => {
                 setMovies(data.movies);
@@ -40,8 +40,8 @@ function Body() {
         setLoading(true);
 
         try {
-            // Request for recommended movies with input selected movie
-            const response = await fetch("http://localhost:5001/recommend", {
+            // API Request for recommended movies with input selected movie from backend
+            const response = await fetch("https://batmovie-movie-recommender-system.onrender.com/recommend", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
