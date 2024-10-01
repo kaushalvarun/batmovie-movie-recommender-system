@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import About from './About';
-import Home from './Home';
-import TechStack from './TechStack';
+import Home from './pages/Home/Home';
+import About from './pages/About/About';
+import TechStack from './pages/TechStack/TechStack';
 
 function App() {
   const router = createBrowserRouter([

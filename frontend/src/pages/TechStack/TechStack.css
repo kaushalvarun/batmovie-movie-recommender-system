@@ -1,0 +1,28 @@
+.tech-stack-container {
+    max-width: 70vw;
+    padding: 5%; 
+    border-radius: 5px;
+}
+
+.tech-stack-container h1 {
+    margin-bottom: 4%; 
+}
+
+.tech-stack-container p {
+    font-size: 1.2rem; 
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+    .tech-stack-container {
+        padding: 8%; 
+    }
+
+    .tech-stack-container p {
+        font-size: 1rem; 
+    }
+
+    .tech-stack-container h1 {
+        margin-bottom: 6%;
+    }
+}

@@ -1,0 +1,59 @@
+.about-container {
+    max-width: 75vw;
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 5%;
+    flex-wrap: wrap; 
+}
+
+.left-side, .right-side {
+    flex: 1;
+    padding: 2%; 
+}
+
+.left-side {
+    padding-right: 5%; 
+}
+
+.right-side {
+    padding-left: 5%; 
+}
+
+.description, .fun-fact, .portfolio, .lets-talk {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 5%;
+    border-radius: 5%;
+    margin-bottom: 5%;
+}
+
+.left-side h1, h2 {
+    margin-bottom: 5%; 
+}
+
+.right-side a {
+    color: white; 
+    text-decoration: underline; 
+    font-weight: 500; 
+}
+
+.right-side a:hover {
+    text-decoration: underline; 
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column; 
+        margin: 1rem 3%;
+    }
+
+    .left-side, .right-side {
+        padding: 3%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .description, .fun-fact, .portfolio, .lets-talk {
+        padding: 4%;
+    }
+}
