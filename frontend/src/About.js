@@ -36,7 +36,7 @@ function About() {
           </p>
           <h2>Let's Talk!</h2>
           <p>
-            Follow me on <a href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+            Follow me on <a href="https://www.linkedin.com/in/kaushal-varun" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
           </p>
         </div>
       </div>
