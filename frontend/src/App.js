@@ -1,17 +1,21 @@
 import React from 'react';
-import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import Body from './components/Body/Body';
-import Footer from './components/Footer/Footer';
 import './App.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import About from './About';
+import Home from './Home';
+import TechStack from './TechStack';
 
 function App() {
+  const router = createBrowserRouter([
+    { path: "/", element: <Home /> },
+    { path: "/about", element: <About/> },
+    { path: "/tech-stack", element: <TechStack /> }
+  ]);
   return (
     <div className="App">
-      <Header />
-      <Body />
-      <Navbar />
-      <Footer />
+      <RouterProvider router={router}>
+      </RouterProvider>
     </div>
   );
 }
