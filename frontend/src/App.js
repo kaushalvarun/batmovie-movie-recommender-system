@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import TechStack from './pages/TechStack/TechStack';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const router = createBrowserRouter([
@@ -13,8 +14,11 @@ function App() {
   ]);
   return (
     <div className="App">
-      <RouterProvider router={router}>
-      </RouterProvider>
+      <div className="main-content-body">
+        <RouterProvider router={router}>
+        </RouterProvider>
+      </div>
+      <Footer/>
     </div>
   );
 }

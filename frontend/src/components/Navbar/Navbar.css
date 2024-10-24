@@ -68,6 +68,7 @@
 
 /* Links inside container styles */
 .belt-link {
+    width: 100%;
     text-decoration: none;
     text-align: center;
     color: inherit; 

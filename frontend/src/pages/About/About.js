@@ -1,11 +1,10 @@
 import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
-import Footer from '../../components/Footer/Footer';
 import './About.css';
 
 function About() {
   return (
-    <div className="About">
+    <div className="main-content-body">
       <div className="about-container">
         <div className="left-side">
           <h1>About Me</h1>
@@ -41,7 +40,6 @@ function About() {
         </div>
       </div>
       <Navbar />
-      <Footer />
     </div>
   );
 }

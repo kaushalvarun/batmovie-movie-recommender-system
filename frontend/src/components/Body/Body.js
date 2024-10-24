@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Body.css";
+import MovieDropdown from "../MovieDropdown/MovieDropdown";
 
 function Body() {
     // State to store movie titles from the backend
     const [movies, setMovies] = useState([]);
-    // State for the selected movie
-    const [selectedMovie, setSelectedMovie] = useState("");
+    
     // State to store recommendations
     const [recommendations, setRecommendations] = useState([]);
     // Error message if no movie found
@@ -31,8 +31,7 @@ function Body() {
     }, []);
 
     // Handle form submission
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const getRecommendations = async (selectedMovie) => {
         // Reset error message before fetching
         setErrorMessage("");
 
@@ -69,24 +68,10 @@ function Body() {
     return (
         <main className="body">
             {/* Movie selection form */}
-            <form onSubmit={handleSubmit}>
-                <select
-                    className="search-bar"
-                    name="movie"
-                    id="movie"
-                    value={selectedMovie}
-                    onChange={(e) => setSelectedMovie(e.target.value)}
-                >
-                    <option value="">Select a movie...</option>
-                    {movies.map((title, index) => (
-                        <option key={index} value={title}>
-                            {title}
-                        </option>
-                    ))}
-                </select>
-                <br />
-                <button type="submit">Recommend</button>
-            </form>
+            <MovieDropdown 
+                movies={movies}
+                getRecommendations={(selMovie)=> getRecommendations(selMovie)}
+            />
 
             {/* Loading sign */}
             {loading && <h3>Loading...</h3>}
