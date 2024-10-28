@@ -8,7 +8,7 @@
 .main-content-body {
   flex:1;
   display: flex;
-  min-width: 90vw; 
+  max-width: 90vw; 
   background-color: #282e3c;
   color: #fefefe;
   margin-right: 10vw; 

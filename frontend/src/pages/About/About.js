@@ -13,7 +13,7 @@ function About() {
               Hello Everyone,
             </p>
             <p>
-              I'm Varun Kaushal,
+              I'm Varun Kaushal
             </p>
             <p>
               I'm in my third year of studying Computer Science and Engineering at VIT University in Vellore.

@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./MovieDropdown.css"
 
 const MovieDropdown = ({ movies, getRecommendations }) => {
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState("Batman Begins");
     const [filteredMovies, setFilteredMovies] = useState([]);
     const [highlightedIndex, setHighlightedIndex] = useState(0);
+    const [movieFound, setMovieFound] = useState(1);
+
+
+    useEffect(()=>{
+        getRecommendations(searchTerm);
+        // eslint-disable-next-line
+    },[]);
 
     // Handle input change
     const handleInputChange = (e) => {
@@ -16,9 +23,16 @@ const MovieDropdown = ({ movies, getRecommendations }) => {
             movie.toLowerCase().includes(term.toLowerCase())
         );
 
-        setFilteredMovies(filtered);
-        // Reset the highlighted index after each search
-        setHighlightedIndex(0); 
+        if (filtered.length > 0) {
+            // Reset the highlighted index after each search
+            setFilteredMovies(filtered);
+            setHighlightedIndex(0); 
+            setMovieFound(1);
+        }
+        else {
+            setFilteredMovies(filtered);
+            setMovieFound(0);
+        }
     };
 
     // Handle key navigation
@@ -79,6 +93,13 @@ const MovieDropdown = ({ movies, getRecommendations }) => {
                         ))}
                     </ul>
                 )}
+
+                {movieFound === 0 && (
+                    <p>Sorry! Can't find this movie in our database, 
+                       please try with an alternate spelling or 
+                       check for a different movie. 
+                    </p>
+                    )}
             </form>
     );
 };
